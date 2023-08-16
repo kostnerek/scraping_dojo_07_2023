@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import re
 from dotenv import dotenv_values
 
-from utils import save_to_json
+from utils import save_to_json, validate_envs
 
 def extract_data_from_quote(quote):
     quote_text = quote.find_element(By.CLASS_NAME, "text").text
@@ -41,6 +41,7 @@ def scrape_data(driver, url, filename):
 
 if __name__ == "__main__":
     config = dotenv_values(".env")
+    validate_envs(config)
     options = webdriver.ChromeOptions()
     service = ChromeService(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)

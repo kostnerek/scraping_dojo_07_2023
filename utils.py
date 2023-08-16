@@ -17,3 +17,9 @@ def save_to_json(data_list, filename):
     else:
         with open(filename, 'w') as file:
             json.dump(data_list, file, indent=4)
+
+def validate_envs(envs):
+    required_envs = ['INPUT_URL', 'OUTPUT_FILE']
+    for env in required_envs:
+        if env not in envs:
+            raise Exception(f"Environment variable {env} is missing.")
