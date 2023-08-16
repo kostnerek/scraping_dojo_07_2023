@@ -1,6 +1,6 @@
 import json
 import os
-
+from consts import REQUIRED_ENVS
 
 def save_to_json(data_list, filename):
     if os.path.exists(filename):
@@ -19,7 +19,6 @@ def save_to_json(data_list, filename):
             json.dump(data_list, file, indent=4)
 
 def validate_envs(envs):
-    required_envs = ['INPUT_URL', 'OUTPUT_FILE']
-    for env in required_envs:
+    for env in REQUIRED_ENVS:
         if env not in envs:
             raise Exception(f"Environment variable {env} is missing.")
