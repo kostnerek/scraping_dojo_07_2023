@@ -43,8 +43,7 @@ def scrape_data(driver, url, filename):
 if __name__ == "__main__":
     config = dotenv_values(".env")
     validate_envs(config)
-    options = webdriver.ChromeOptions()
     service = ChromeService(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service)
     scrape_data(driver, config['INPUT_URL'], config['OUTPUT_FILE'])
     driver.quit()
